@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: "Ansyr-order"
+    image: "postgres:latest"
+    restart: "on-failure"
+    environment:
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "order"
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: "12345"
+    ports:
+      - "12345:5432"
+    volumes:
+      - ./dump:/var/lib/postgresql/data

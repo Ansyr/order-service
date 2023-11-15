@@ -6,6 +6,8 @@ import {RestaurantId} from "../value-object/restuarant-id";
 import {Address} from "../value-object/address";
 import {Product} from "../product/entity/product";
 import {ProductId} from "../value-object/product-id";
+import {Amount} from "../value-object/amount";
+import {randomUUID} from "crypto";
 
 describe('Order', () => {
     const orderId = new OrderId(1);
@@ -14,15 +16,15 @@ describe('Order', () => {
     const totalPrice = new Price(100);
     const status = OrderStatus.Pending;
     const deliveryAddress = new Address('street', 'houseNumber', 'apartmentNumber', 'city', 'country');
-    const restaurantId = new RestaurantId(1);
-    const quantity = 1
-    const products = [new Product(new ProductId(1), 'Product1', new Price(100), 'Description', new RestaurantId(1)),
-        new Product(new ProductId(22), 'Product2', new Price(200), 'Description', new RestaurantId(2)),
-        new Product(new ProductId(3), 'Product3', new Price(300), 'Description', new RestaurantId(3))]
+    const restaurantId = new RestaurantId(randomUUID());
+    const amount = new Amount(1)
+    const products = [new Product(new ProductId(randomUUID()), 'Product1', new Price(100), 'Description', new RestaurantId(randomUUID())),
+        new Product(new ProductId(randomUUID()), 'Product2', new Price(200), 'Description', new RestaurantId(randomUUID())),
+        new Product(new ProductId(randomUUID()), 'Product3', new Price(300), 'Description', new RestaurantId(randomUUID()))]
     let order: Order;
 
     beforeEach(() => {
-        order = Order.create(orderId, userId, dateTime, totalPrice, status, quantity, deliveryAddress, restaurantId,products);
+        order = Order.create(orderId, userId, dateTime, totalPrice, status, amount, deliveryAddress, restaurantId,products);
     })
 
     it('should create an order', () => {
@@ -31,7 +33,7 @@ describe('Order', () => {
         expect(order.dateTime).toEqual(dateTime);
         expect(order.totalPrice).toEqual(totalPrice);
         expect(order.status).toEqual(status);
-        expect(order.quantity).toEqual(quantity);
+        expect(order.amount).toEqual(amount);
         expect(order.deliveryAddress).toEqual(deliveryAddress);
         expect(order.restaurantId).toEqual(restaurantId);
         expect(order.products).toEqual(products);
@@ -47,28 +49,13 @@ describe('Order', () => {
         expect(order.status).toEqual(newStatus);
     });
 
-    it('should change status to Delivered', function () {
-        const newStatus = OrderStatus.Delivered;
+    it('should change status to Payment', function () {
+        const newStatus = OrderStatus.Payment;
         order.changeStatus(newStatus);
         expect(order.status).toEqual(newStatus);
     })
-    it('should change date time', function () {
-        const newDateTime = new Date();
-        order.changeDateTime(newDateTime);
-    });
-
-    it('should change delivery address', function () {
-        const newAddress = new Address('street', 'houseNumber', 'apartmentNumber', 'city', 'country');
-        order.changeDeliveryAddress(newAddress);
-    });
-    it('should update products', function () {
-        const newProducts = [new Product(new ProductId(1), 'Product1', new Price(100), 'Description', new RestaurantId(1)),
-            new Product(new ProductId(22), 'Product2', new Price(200), 'Description', new RestaurantId(2)),
-            new Product(new ProductId(3), 'Product3', new Price(300), 'Description', new RestaurantId(3))]
-        order.changeProducts(newProducts);
-    });
     it('should update quantity', function () {
-        const newQuantity = 2;
-        order.changeQuantity(newQuantity);
+        const newAmount = new Amount(1);
+        order.changeAmount(newAmount);
     });
 })

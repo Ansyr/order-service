@@ -1,11 +1,12 @@
 import {Address} from "../value-object/address";
 import {RestaurantId} from "../value-object/restuarant-id";
 import {Restaurant} from "./entity/restaurant";
+import {randomUUID} from "crypto";
 
 describe("Restaurant", () => {
     const name = "restaurant";
     const address = new Address("street", "houseNumber", "apartmentNumber", "city", "country");
-    const id = new RestaurantId(1);
+    const id = new RestaurantId(randomUUID());
 
     let restaurant: Restaurant;
 

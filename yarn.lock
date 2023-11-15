@@ -1428,10 +1428,10 @@
   dependencies:
     undici-types "~5.26.4"
 
-"@types/nodemon@^1.19.4":
-  version "1.19.4"
-  resolved "https://registry.yarnpkg.com/@types/nodemon/-/nodemon-1.19.4.tgz#f6dfaa0236eaee1cfe5ad80165aef5b1a0a71463"
-  integrity sha512-xWfDFY0hH9TRprHD1N0/Lp0dkze/vahRxLMN3cgW+PGnmtSzMXaNlTeWmSmlvefXFv5L0spheNZ0XEFB/O9ttQ==
+"@types/nodemon@^1.19.5":
+  version "1.19.5"
+  resolved "https://registry.yarnpkg.com/@types/nodemon/-/nodemon-1.19.5.tgz#204dd36b509e4ffece57274ead52b0faead1b23a"
+  integrity sha512-jUKYdrnwLp4jMztMdQEJnF4lBhthCfqE7P6cYCIy0txMJrSFtKqs2HjmyEsyQueLjZjve0IjJ1S+20DtgJpUjA==
   dependencies:
     "@types/node" "*"
 
@@ -1476,6 +1476,11 @@
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.2.tgz#01284dde9ef4e6d8cef6422798d9a3ad18a66f8b"
   integrity sha512-g7CK9nHdwjK2n0ymT2CW698FuWJRIx+RP6embAzZ2Qi8/ilIrA1Imt2LVSeHUzKvpoi7BhmmQcXz95eS0f2JXw==
+
+"@types/uuid@^9.0.7":
+  version "9.0.7"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-9.0.7.tgz#b14cebc75455eeeb160d5fe23c2fcc0c64f724d8"
+  integrity sha512-WUtIVRUZ9i5dYXefDEAI7sh9/O7jGvHg7Df/5O/gtH3Yabe5odI3UWopVR1qbPXQtvOxWu3mM4XxlYeZtMWF4g==
 
 "@types/validator@*", "@types/validator@^13.7.17":
   version "13.11.5"
@@ -1989,10 +1994,20 @@ diff@^4.0.1:
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
 
+dotenv@^16.3.1:
+  version "16.3.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.3.1.tgz#369034de7d7e5b120972693352a3bf112172cc3e"
+  integrity sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==
+
 dottie@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/dottie/-/dottie-2.0.6.tgz#34564ebfc6ec5e5772272d466424ad5b696484d4"
   integrity sha512-iGCHkfUc5kFekGiqhe8B/mdaurD+lakO9txNnTvKtA6PISrw86LgqHvRzWYPyoE2Ph5aMIrCw9/uko6XHTKCwA==
+
+doublylinked@^2.5.3:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/doublylinked/-/doublylinked-2.5.3.tgz#c1326c9ef6b7af512936f92081d584dead49046e"
+  integrity sha512-keXW5tISg1HR3pg9f+wWPO62EnONGlEsm1NcpKn1+zhwyeHaRIVz9//UDpZf/VkKYjtBTzZ0lnCt0YvXalhALA==
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -2873,6 +2888,14 @@ leven@^3.1.0:
   resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
   integrity sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==
 
+lightning-pool@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/lightning-pool/-/lightning-pool-4.2.2.tgz#2481cda4074a61656f20c02fff8c29746cbab29f"
+  integrity sha512-KW0Df0IbjNLxy5wAsdErTKYtHGwefLRQseHNksEctyaL7gtRwJT0nqLa2uiRdNYDwKSnZtqOjSjUNtfxmfH1qw==
+  dependencies:
+    doublylinked "^2.5.3"
+    putil-promisify "^1.10.1"
+
 lines-and-columns@^1.1.6:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
@@ -3077,6 +3100,11 @@ object-inspect@^1.9.0:
   resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.13.1.tgz#b96c6109324ccfef6b12216a956ca4dc2ff94bc2"
   integrity sha512-5qoj1RUiKOMsCCNLV1CBiPYE10sziTsnmNxkAI/rZhiD63CF7IqdFGC/XzjWjpSgLf0LxXX3bDFIh0E18f6UhQ==
 
+obuf@~1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
+  integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
+
 on-finished@2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.4.1.tgz#58c8c44116e54845ad57f14ab10b03533184ac3f"
@@ -3261,6 +3289,13 @@ postgres-array@~2.0.0:
   resolved "https://registry.yarnpkg.com/postgres-array/-/postgres-array-2.0.0.tgz#48f8fce054fbc69671999329b8834b772652d82e"
   integrity sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==
 
+postgres-bytea@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/postgres-bytea/-/postgres-bytea-3.0.0.tgz#9048dc461ac7ba70a6a42d109221619ecd1cb089"
+  integrity sha512-CNd4jim9RFPkObHSjVHlVrxoVQXz7quwNFpz7RY1okNNme49+sVyiTvTRobiLV548Hx/hb1BG+iE7h9493WzFw==
+  dependencies:
+    obuf "~1.1.2"
+
 postgres-bytea@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/postgres-bytea/-/postgres-bytea-1.0.0.tgz#027b533c0aa890e26d172d47cf9ccecc521acd35"
@@ -3277,6 +3312,27 @@ postgres-interval@^1.1.0:
   integrity sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==
   dependencies:
     xtend "^4.0.0"
+
+postgresql-client@^2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/postgresql-client/-/postgresql-client-2.10.1.tgz#734d2069fa6c28cf325d15366563c5171daa2b0b"
+  integrity sha512-Z/R+0FZfA9jXbnIdyq0MHaytFPtwuz6ByNM88k7XObga4WbfXDu2cOQriCE30i5HYWhgUS1XCu7ZWjuLLWJlpQ==
+  dependencies:
+    doublylinked "^2.5.3"
+    lightning-pool "^4.2.2"
+    postgres-bytea "^3.0.0"
+    power-tasks "^1.7.2"
+    putil-merge "^3.10.3"
+    putil-promisify "^1.10.1"
+    putil-varhelpers "^1.6.5"
+
+power-tasks@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/power-tasks/-/power-tasks-1.7.2.tgz#42a09a8cf174cce21b5dbc0ec0d97c9b2e29c6b0"
+  integrity sha512-fR6m2Nh/d420KgDWTO2adJtY4xZP7/Q7KcfU9CUqZO4n51c6WFDh45WjDmHEYAIjueZStGPgAc/G7AUG3w7Psg==
+  dependencies:
+    doublylinked "^2.5.3"
+    strict-typed-events "^2.3.2"
 
 pretty-format@^29.0.0, pretty-format@^29.7.0:
   version "29.7.0"
@@ -3312,6 +3368,21 @@ pure-rand@^6.0.0:
   version "6.0.4"
   resolved "https://registry.yarnpkg.com/pure-rand/-/pure-rand-6.0.4.tgz#50b737f6a925468679bff00ad20eade53f37d5c7"
   integrity sha512-LA0Y9kxMYv47GIPJy6MI84fqTd2HmYZI83W/kM/SkKfDlajnZYfmXFTxkbY+xSBPkLJxltMa9hIkmdc29eguMA==
+
+putil-merge@^3.10.3:
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/putil-merge/-/putil-merge-3.12.1.tgz#2ee5db99c8711f5b1e7ac1529ae355284745ff67"
+  integrity sha512-4clPyRkJPrd5zl98AP7I3JamyXbx0ixe2CnfvGwoTyWSr7Kslcv8weoKjfU4BMBifkWIRL54l4OrNe97pYcDwQ==
+
+putil-promisify@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/putil-promisify/-/putil-promisify-1.10.1.tgz#bf72d286d91c4031f5fe65f014c2d16fbd2ccdbc"
+  integrity sha512-1jm0egJNrj5eBDRj15Cg08RNHDV91OVEHeeYjAFRcs663PXxFokndxcJAGbaO6CSErCTp8eTgC8vuOF+fvXIAA==
+
+putil-varhelpers@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/putil-varhelpers/-/putil-varhelpers-1.6.5.tgz#7303e56f6ac344e79cf27ff77fd28fe175fb375e"
+  integrity sha512-kyu+lE5xkc65ScgaIi6rNONLXeS7jGBxl1I0rzHVsFGAAQ45D/VkuEev+t09PFB943F+CqdWFLczH6ePk5TPAA==
 
 qs@6.11.0:
   version "6.11.0"
@@ -3597,6 +3668,14 @@ statuses@2.0.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-2.0.1.tgz#55cb000ccf1d48728bd23c685a063998cf1a1b63"
   integrity sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==
 
+strict-typed-events@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/strict-typed-events/-/strict-typed-events-2.3.2.tgz#352e6581ac36ac09986be75d703c52754937fe2d"
+  integrity sha512-m9MlzmrU57koktFQCq1O0m6EpiqO5U5V/0DYRtQ3XDbAQZPRzbnaQKMAEAWCB1zaIQVn+9CGAehqTKb+Nh0+zA==
+  dependencies:
+    putil-promisify "^1.10.1"
+    ts-gems "^2.4.1"
+
 string-length@^4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/string-length/-/string-length-4.0.2.tgz#a8a8dc7bd5c1a82b9b3c8b87e125f66871b6e57a"
@@ -3704,6 +3783,11 @@ touch@^3.1.0:
   integrity sha512-WBx8Uy5TLtOSRtIq+M03/sKDrXCLHxwDcquSP2c43Le03/9serjQBIztjRz6FkJez9D/hleyAXTBGLwwZUw9lA==
   dependencies:
     nopt "~1.0.10"
+
+ts-gems@^2.4.1:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/ts-gems/-/ts-gems-2.5.0.tgz#b966c34d83e324a7f273967300bcc02bed67977d"
+  integrity sha512-yu110Lf3DjFMvtvuo9zwfnO19Ck4C37V2RCQ8jpjv2P+XorZRr4EjJPJ9ItSHOP6N0m554fG00xC1/t4zeUTuA==
 
 ts-jest@^29.1.1:
   version "29.1.1"
@@ -3821,6 +3905,11 @@ uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+uuid@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
+  integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
 
 v8-compile-cache-lib@^3.0.1:
   version "3.0.1"

@@ -1,6 +1,8 @@
+import {UUID} from "crypto";
+
 export class ReviewId{
-    id: number;
-    constructor(id: number){
+    id: UUID;
+    constructor(id: UUID){
         this.id = id
     }
 }

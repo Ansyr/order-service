@@ -3,11 +3,12 @@ import {Product} from "./entity/product";
 import {ProductId} from "../value-object/product-id";
 import {RestaurantId} from "../value-object/restuarant-id";
 import {Price} from "../value-object/price";
+import {randomUUID} from "crypto";
 
 
 describe('Product', () => {
-    const productId: ProductId = new ProductId(1);
-    const restaurantId: RestaurantId = new RestaurantId(1);
+    const productId: ProductId = new ProductId(randomUUID());
+    const restaurantId: RestaurantId = new RestaurantId(randomUUID());
     const productName = 'Test Product';
     const productPrice: Price = new Price(100);
     const productDescription = 'Test Description';

@@ -8,15 +8,16 @@ import {FullName} from "../user/value-object/full-name";
 import {Email} from "../user/value-object/email";
 import {Password} from "../user/value-object/password";
 import {Delivery, DeliveryStatus} from "./entity/delivery";
+import {randomUUID} from "crypto";
 
 describe('Delivery', () => {
     const deliveryId = new DeliveryId(1);
-    const orderId = new OrderId(1);
+    const orderId = new OrderId(randomUUID());
     const address = new Address('street', 'houseNumber', 'apartmentNumber', 'city', 'country');
     const fullName = new FullName("name", "surname", "lastname");
     const email = new Email("email@mail.ru");
     const password = new Password("password");
-    const userId = new UserId(1)
+    const userId = new UserId(randomUUID())
     const courier = new User(userId, fullName,email, password, address, new PhoneNumber('1234567890'), Roles.COURIER);
     const deliveryStatus = DeliveryStatus.Pending;
     let delivery: Delivery;

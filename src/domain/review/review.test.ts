@@ -3,14 +3,15 @@ import {Rating} from "./value-object/rating";
 import {Review} from "./entity/review";
 import {RestaurantId} from "../value-object/restuarant-id";
 import {ReviewId} from "./value-object/review-id";
+import {randomUUID} from "crypto";
 
 describe('Review', () => {
-    const userId = new UserId(1)
-    const restaurantId = new RestaurantId(1)
+    const userId = new UserId(randomUUID())
+    const restaurantId = new RestaurantId(randomUUID())
     const title = 'title'
     const reviewText = 'reviewText'
     const rating = new Rating(5)
-    const reviewId = new ReviewId(1)
+    const reviewId = new ReviewId(randomUUID())
     let review: Review;
 
     beforeEach(() => {

@@ -4,12 +4,14 @@ import {Price} from "../../value-object/price";
 import {Address} from "../../value-object/address";
 import {RestaurantId} from "../../value-object/restuarant-id";
 import {Product} from "../../product/entity/product";
+import {Amount} from "../../value-object/amount";
+import {UUID} from "crypto";
 
 export enum OrderStatus {
     Created= "Создан",
     Pending = "В обработке",
     Rejected = "Отклонен",
-    Delivered = "Доставлен",
+    Payment = "Оплачен",
 }
 
 export class Order{
@@ -19,32 +21,26 @@ export class Order{
         public dateTime : Date,
         public totalPrice: Price,
         public status: OrderStatus,
-        public quantity: number,
+        public amount: Amount,
         public deliveryAddress: Address,
         public restaurantId: RestaurantId,
         public products: Product[]
     ){}
 
-    static create(orderId: OrderId, userId: UserId, dateTime: Date, totalPrice: Price, status: OrderStatus, quantity: number, deliveryAddress: Address, restaurantId: RestaurantId, products: Product[]): Order{
-        return new Order(orderId, userId, dateTime, totalPrice, status,quantity, deliveryAddress, restaurantId, products);
+    static create(orderId: OrderId, userId: UserId, dateTime: Date, totalPrice: Price, status: OrderStatus, amount: Amount, deliveryAddress: Address, restaurantId: RestaurantId, products: Product[]): Order{
+        return new Order(orderId, userId, dateTime, totalPrice, status,amount, deliveryAddress, restaurantId, products);
     }
 
     changeStatus(newStatus: OrderStatus): void{
         this.status = newStatus;
     }
 
-    changeDateTime(newDateTime: Date): void{
-        this.dateTime = newDateTime
+
+    changeAmount(newAmount: Amount): void{
+        this.amount = newAmount
     }
 
-    changeDeliveryAddress(newAddress: Address): void{
-        this.deliveryAddress = newAddress
-    }
-    changeProducts(newProducts: Product[]): void{
-        this.products = newProducts
-    }
-
-    changeQuantity(newQuantity: number): void{
-        this.quantity = newQuantity
+    getUUID(): UUID{
+        return this.id.id
     }
 }

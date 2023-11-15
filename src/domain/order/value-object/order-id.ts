@@ -1,6 +1,9 @@
+import {UUID} from "crypto";
+
+
 export class OrderId{
-    id: number;
-    constructor(id: number){
+    id: UUID;
+    constructor(id: UUID){
         this.id = id;
     }
 }
