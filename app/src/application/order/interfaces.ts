@@ -7,7 +7,7 @@ import {RestaurantId} from "../../domain/value-object/restuarant-id";
 export interface OrderRepository {
     saveOrder(order: Order): void
     deleteOrder(id: UUID): void
-    updateOrder(order: Order): void
+    updateOrderStatus(order: Order): void
     findOrder(id: UUID): Order
 }
 

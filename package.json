@@ -7,8 +7,8 @@
     "pg-hstore": "^2.3.4"
   },
   "scripts": {
-    "dev": "nodemon ./cmd/main.ts",
-    "start": "node ./cmd/main.ts",
+    "dev": "nodemon app/cmd/main.ts",
+    "start": "node app/cmd/main.ts",
     "test": "jest"
   },
   "devDependencies": {

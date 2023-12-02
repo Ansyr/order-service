@@ -1,8 +1,6 @@
 import {Price} from "../../../domain/value-object/price";
 import {Order, OrderStatus} from "../../../domain/order/entity/order";
 import {Amount} from "../../../domain/value-object/amount";
-import {RestaurantId} from "../../../domain/value-object/restuarant-id";
-import {UserId} from "../../../domain/value-object/user-id";
 import {Address} from "../../../domain/value-object/address";
 import {OrderId} from "../../../domain/order/value-object/order-id";
 import {randomUUID} from "crypto";

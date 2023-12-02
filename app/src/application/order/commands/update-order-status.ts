@@ -9,7 +9,7 @@ export class UpdateOrderStatus {
     handle(command: UpdateOrderStatusCommand): UpdateOrderStatusDTO {
         const order = this.orderRepo.findOrder(command.orderId)
         order.changeStatus(command.status)
-        this.orderRepo.updateOrder(order)
+        this.orderRepo.updateOrderStatus(order)
         return {
             orderId: command.orderId,
         }

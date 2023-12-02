@@ -28,6 +28,6 @@ yarn-error.log*
 # Back
 .idea
 __pycache__
-.env
+
 backend/dist
 dump
