@@ -64,7 +64,6 @@ CREATE TABLE IF NOT EXISTS order_detail.order_detail (
     order_detail_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     order_id INT REFERENCES "order".order(order_id) ON DELETE CASCADE,
     product_id INT REFERENCES product.product(product_id) ON DELETE CASCADE,
-    quantity INT NOT NULL,
     total_price DECIMAL(10, 2) NOT NULL
 );
 

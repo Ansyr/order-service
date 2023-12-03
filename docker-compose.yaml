@@ -14,3 +14,18 @@ services:
       - "12345:5432"
     volumes:
       - ./dump:/var/lib/postgresql/data
+
+  postgres_test:
+    container_name: "Ansyr-order-test"
+    image: "postgres:latest"
+    restart: "on-failure"
+    environment:
+      POSTGRES_PASSWORD: "testroot"
+      POSTGRES_USER: "testpostgres"
+      POSTGRES_DB: "order_test"
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: "12346"
+    ports:
+      - "12346:5432"
+    volumes:
+      - ./dump_test:/var/lib/postgresql/data

@@ -1442,7 +1442,7 @@
   dependencies:
     "@types/pg" "*"
 
-"@types/pg@*":
+"@types/pg@*", "@types/pg@^8.10.9":
   version "8.10.9"
   resolved "https://registry.yarnpkg.com/@types/pg/-/pg-8.10.9.tgz#d20bb948c6268c5bd847e2bf968f1194c5a2355a"
   integrity sha512-UksbANNE/f8w0wOMxVKKIrLCbEMV+oM1uKejmwXr39olg4xqcfBDbXxObJAt6XxHbDa4XTKOlUEcEltXDX+XLQ==
@@ -2019,11 +2019,6 @@ dottie@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/dottie/-/dottie-2.0.6.tgz#34564ebfc6ec5e5772272d466424ad5b696484d4"
   integrity sha512-iGCHkfUc5kFekGiqhe8B/mdaurD+lakO9txNnTvKtA6PISrw86LgqHvRzWYPyoE2Ph5aMIrCw9/uko6XHTKCwA==
-
-doublylinked@^2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/doublylinked/-/doublylinked-2.5.3.tgz#c1326c9ef6b7af512936f92081d584dead49046e"
-  integrity sha512-keXW5tISg1HR3pg9f+wWPO62EnONGlEsm1NcpKn1+zhwyeHaRIVz9//UDpZf/VkKYjtBTzZ0lnCt0YvXalhALA==
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -2904,14 +2899,6 @@ leven@^3.1.0:
   resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
   integrity sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==
 
-lightning-pool@^4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/lightning-pool/-/lightning-pool-4.2.2.tgz#2481cda4074a61656f20c02fff8c29746cbab29f"
-  integrity sha512-KW0Df0IbjNLxy5wAsdErTKYtHGwefLRQseHNksEctyaL7gtRwJT0nqLa2uiRdNYDwKSnZtqOjSjUNtfxmfH1qw==
-  dependencies:
-    doublylinked "^2.5.3"
-    putil-promisify "^1.10.1"
-
 lines-and-columns@^1.1.6:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
@@ -3328,17 +3315,17 @@ postgres-array@~3.0.1:
   resolved "https://registry.yarnpkg.com/postgres-array/-/postgres-array-3.0.2.tgz#68d6182cb0f7f152a7e60dc6a6889ed74b0a5f98"
   integrity sha512-6faShkdFugNQCLwucjPcY5ARoW1SlbnrZjmGl0IrrqewpvxvhSLHimCVzqeuULCbG0fQv7Dtk1yDbG3xv7Veog==
 
-postgres-bytea@^3.0.0, postgres-bytea@~3.0.0:
+postgres-bytea@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/postgres-bytea/-/postgres-bytea-1.0.0.tgz#027b533c0aa890e26d172d47cf9ccecc521acd35"
+  integrity sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==
+
+postgres-bytea@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/postgres-bytea/-/postgres-bytea-3.0.0.tgz#9048dc461ac7ba70a6a42d109221619ecd1cb089"
   integrity sha512-CNd4jim9RFPkObHSjVHlVrxoVQXz7quwNFpz7RY1okNNme49+sVyiTvTRobiLV548Hx/hb1BG+iE7h9493WzFw==
   dependencies:
     obuf "~1.1.2"
-
-postgres-bytea@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/postgres-bytea/-/postgres-bytea-1.0.0.tgz#027b533c0aa890e26d172d47cf9ccecc521acd35"
-  integrity sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==
 
 postgres-date@~1.0.4:
   version "1.0.7"
@@ -3366,27 +3353,6 @@ postgres-range@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/postgres-range/-/postgres-range-1.1.3.tgz#9ccd7b01ca2789eb3c2e0888b3184225fa859f76"
   integrity sha512-VdlZoocy5lCP0c/t66xAfclglEapXPCIVhqqJRncYpvbCgImF0w67aPKfbqUMr72tO2k5q0TdTZwCLjPTI6C9g==
-
-postgresql-client@^2.10.1:
-  version "2.10.1"
-  resolved "https://registry.yarnpkg.com/postgresql-client/-/postgresql-client-2.10.1.tgz#734d2069fa6c28cf325d15366563c5171daa2b0b"
-  integrity sha512-Z/R+0FZfA9jXbnIdyq0MHaytFPtwuz6ByNM88k7XObga4WbfXDu2cOQriCE30i5HYWhgUS1XCu7ZWjuLLWJlpQ==
-  dependencies:
-    doublylinked "^2.5.3"
-    lightning-pool "^4.2.2"
-    postgres-bytea "^3.0.0"
-    power-tasks "^1.7.2"
-    putil-merge "^3.10.3"
-    putil-promisify "^1.10.1"
-    putil-varhelpers "^1.6.5"
-
-power-tasks@^1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/power-tasks/-/power-tasks-1.7.2.tgz#42a09a8cf174cce21b5dbc0ec0d97c9b2e29c6b0"
-  integrity sha512-fR6m2Nh/d420KgDWTO2adJtY4xZP7/Q7KcfU9CUqZO4n51c6WFDh45WjDmHEYAIjueZStGPgAc/G7AUG3w7Psg==
-  dependencies:
-    doublylinked "^2.5.3"
-    strict-typed-events "^2.3.2"
 
 pretty-format@^29.0.0, pretty-format@^29.7.0:
   version "29.7.0"
@@ -3422,21 +3388,6 @@ pure-rand@^6.0.0:
   version "6.0.4"
   resolved "https://registry.yarnpkg.com/pure-rand/-/pure-rand-6.0.4.tgz#50b737f6a925468679bff00ad20eade53f37d5c7"
   integrity sha512-LA0Y9kxMYv47GIPJy6MI84fqTd2HmYZI83W/kM/SkKfDlajnZYfmXFTxkbY+xSBPkLJxltMa9hIkmdc29eguMA==
-
-putil-merge@^3.10.3:
-  version "3.12.1"
-  resolved "https://registry.yarnpkg.com/putil-merge/-/putil-merge-3.12.1.tgz#2ee5db99c8711f5b1e7ac1529ae355284745ff67"
-  integrity sha512-4clPyRkJPrd5zl98AP7I3JamyXbx0ixe2CnfvGwoTyWSr7Kslcv8weoKjfU4BMBifkWIRL54l4OrNe97pYcDwQ==
-
-putil-promisify@^1.10.1:
-  version "1.10.1"
-  resolved "https://registry.yarnpkg.com/putil-promisify/-/putil-promisify-1.10.1.tgz#bf72d286d91c4031f5fe65f014c2d16fbd2ccdbc"
-  integrity sha512-1jm0egJNrj5eBDRj15Cg08RNHDV91OVEHeeYjAFRcs663PXxFokndxcJAGbaO6CSErCTp8eTgC8vuOF+fvXIAA==
-
-putil-varhelpers@^1.6.5:
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/putil-varhelpers/-/putil-varhelpers-1.6.5.tgz#7303e56f6ac344e79cf27ff77fd28fe175fb375e"
-  integrity sha512-kyu+lE5xkc65ScgaIi6rNONLXeS7jGBxl1I0rzHVsFGAAQ45D/VkuEev+t09PFB943F+CqdWFLczH6ePk5TPAA==
 
 qs@6.11.0:
   version "6.11.0"
@@ -3722,14 +3673,6 @@ statuses@2.0.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-2.0.1.tgz#55cb000ccf1d48728bd23c685a063998cf1a1b63"
   integrity sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==
 
-strict-typed-events@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/strict-typed-events/-/strict-typed-events-2.3.2.tgz#352e6581ac36ac09986be75d703c52754937fe2d"
-  integrity sha512-m9MlzmrU57koktFQCq1O0m6EpiqO5U5V/0DYRtQ3XDbAQZPRzbnaQKMAEAWCB1zaIQVn+9CGAehqTKb+Nh0+zA==
-  dependencies:
-    putil-promisify "^1.10.1"
-    ts-gems "^2.4.1"
-
 string-length@^4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/string-length/-/string-length-4.0.2.tgz#a8a8dc7bd5c1a82b9b3c8b87e125f66871b6e57a"
@@ -3837,11 +3780,6 @@ touch@^3.1.0:
   integrity sha512-WBx8Uy5TLtOSRtIq+M03/sKDrXCLHxwDcquSP2c43Le03/9serjQBIztjRz6FkJez9D/hleyAXTBGLwwZUw9lA==
   dependencies:
     nopt "~1.0.10"
-
-ts-gems@^2.4.1:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/ts-gems/-/ts-gems-2.5.0.tgz#b966c34d83e324a7f273967300bcc02bed67977d"
-  integrity sha512-yu110Lf3DjFMvtvuo9zwfnO19Ck4C37V2RCQ8jpjv2P+XorZRr4EjJPJ9ItSHOP6N0m554fG00xC1/t4zeUTuA==
 
 ts-jest@^29.1.1:
   version "29.1.1"
