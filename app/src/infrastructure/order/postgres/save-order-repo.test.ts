@@ -1,21 +1,21 @@
 import Pool from "pg-pool";
-import {Order, OrderStatus} from '../../../domain/order/entity/order';
-import {after, before} from "node:test";
-import {randomUUID} from "crypto";
-import {OrderRepo} from "./repo";
-import {RestaurantId} from "../../../domain/value-object/restuarant-id";
-import {Address} from "../../../domain/value-object/address";
-import {Amount} from "../../../domain/value-object/amount";
-import {Price} from "../../../domain/value-object/price";
-import {UserId} from "../../../domain/value-object/user-id";
-import {OrderId} from "../../../domain/order/value-object/order-id";
+import { Order, OrderStatus } from '../../../domain/order/entity/order';
+import { after, before } from "node:test";
+import { randomUUID } from "crypto";
+import { OrderRepo } from "./repo";
+import { RestaurantId } from "../../../domain/value-object/restuarant-id";
+import { Address } from "../../../domain/value-object/address";
+import { Amount } from "../../../domain/value-object/amount";
+import { Price } from "../../../domain/value-object/price";
+import { UserId } from "../../../domain/value-object/user-id";
+import { OrderId } from "../../../domain/order/value-object/order-id";
 
 
 describe('OrderRepo Integration Tests', () => {
     let pool: Pool;
     let orderRepo = new OrderRepo(pool);
 
-    before(async () => {
+    beforeAll(async () => {
 
         pool = new Pool({
             user: 'testpostgres',
