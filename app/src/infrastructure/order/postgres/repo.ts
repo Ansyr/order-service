@@ -27,7 +27,7 @@ export class OrderRepo implements OrderRepository {
             const newOrderId = orderRes.rows[0].order_id;
 
             const orderDetailText = `INSERT INTO order_detail.order_detail (order_id, product_id, total_price) 
-                                 VALUES $1, ...`;
+                         VALUES ($1, $2, $3), ($4, $5, $6), ...;`;
             const orderDetailValues = order.products.map((product) => [newOrderId, product.id, product.price])
 
             await client.query(orderDetailText, orderDetailValues);

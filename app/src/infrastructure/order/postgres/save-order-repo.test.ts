@@ -38,15 +38,13 @@ describe('OrderRepo Integration Tests', () => {
 
     describe('saveOrder', () => {
         it('should save an order to the database', async () => {
-            const orderId = new OrderId(randomUUID());
-            const userId = new UserId(randomUUID());
             const dateTime = new Date();
             const totalPrice = new Price(100.00);
             const status = OrderStatus.Created;
             const amount = new Amount(2);
             const deliveryAddress = new Address('street', 'houseNumber', 'apartmentNumber', 'city', 'country');
-            const restaurantId = new RestaurantId(randomUUID());
-            const order = Order.create(orderId, userId, dateTime, totalPrice, status, amount, deliveryAddress, restaurantId, [])
+            const restaurantId = new RestaurantId(1);
+            const order = Order.create(1, 1, dateTime, totalPrice, status, 2, deliveryAddress, 1, [])
             // Saving the order
             await orderRepo.saveOrder(order);
 
