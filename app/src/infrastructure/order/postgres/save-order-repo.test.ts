@@ -44,17 +44,21 @@ describe('OrderRepo Integration Tests', () => {
             const amount = new Amount(2);
             const deliveryAddress = new Address('street', 'houseNumber', 'apartmentNumber', 'city', 'country');
             const restaurantId = new RestaurantId(1);
-            const order = Order.create(1, 1, dateTime, totalPrice, status, 2, deliveryAddress, 1, [])
-            // Saving the order
+            const order = Order.create(1, 1, dateTime, totalPrice, status, 2, deliveryAddress, 1, [
+                {
+                    id: 1,
+                    price: 30
+                },
+                {
+                    id: 1,
+                    price: 30
+                }
+            ])
             await orderRepo.saveOrder(order);
 
-            // Query the database directly to verify that the order was saved
             const res = await pool.query('SELECT * FROM "order".order WHERE order_id = $1', [order.id]);
 
-
-            expect(res.rowCount).to.equal(1);
-            expect(res.rows[0].user_id).to.equal(order.userId);
-
+            expect(res).toBe(order.userId);
         });
     });
 

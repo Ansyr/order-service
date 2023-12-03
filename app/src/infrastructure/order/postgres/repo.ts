@@ -12,11 +12,7 @@ export class OrderRepo implements OrderRepository {
     }
 
     async saveOrder(order: Order) {
-
-        console.log(this.pool)
         const client = await this.pool.connect();
-
-
         try {
             await client.query('BEGIN');
 
@@ -26,9 +22,13 @@ export class OrderRepo implements OrderRepository {
             const orderRes = await client.query(orderInsertText, orderInsertValues);
             const newOrderId = orderRes.rows[0].order_id;
 
-            const orderDetailText = `INSERT INTO order_detail.order_detail (order_id, product_id, total_price) 
-                         VALUES ${order.products.map((_, index) => `($${index * 2 + 1}, $${index * 2 + 2})`).join(',')};`;
+            const orderDetailText = `INSERT INTO order_detail.order_detail (order_id, product_id, total_price)
+                                     VALUES ${order.products.map((_, index) => `($${index * 3 + 1}, $${index * 3 + 2}, $${index * 3 + 3})`).join(',')}`;
+
+
             const orderDetailValues = order.products.reduce((acc, product) => [...acc, newOrderId, product.id, product.price], [])
+            console.log("odVal",orderDetailValues)
+            console.log(orderDetailText)
 
             await client.query(orderDetailText, orderDetailValues);
 
