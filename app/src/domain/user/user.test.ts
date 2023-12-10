@@ -70,7 +70,7 @@ describe('User', () => {
     });
     it('should change roles', function () {
         const newRole = Roles.ADMIN
-        user.changeRoles(newRole)
+        user.changeRole(newRole)
         expect(user.roles).toEqual(newRole)
     });
 

@@ -11,3 +11,10 @@ export const getOrderDetailTextQuery = (productsCount: number) => `
   VALUES ${Array.from({ length: productsCount }, (_, index) => `($${index * 3 + 1}, $${index * 3 + 2}, $${index * 3 + 3})`).join(',')};
 `;
 
+
+export const deleteOrderQuery = `DELETE FROM "order".order WHERE order_id = $1`;
+
+export const updateOrderStatusQuery = `UPDATE "order".order SET status = $1 WHERE order_id = $2;`
+
+
+export const findOrderQuery = `SELECT * FROM "order".order WHERE order_id = $1;`

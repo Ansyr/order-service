@@ -10,7 +10,7 @@ import {CreatedOrderDTO} from "./dto";
 import {UserId} from "../../../domain/value-object/user-id";
 
 
-class CreateOrder {
+export class CreateOrder {
     constructor(
         private orderRepo: OrderRepository,
         private orderProductRepo: OrderProductRepository,

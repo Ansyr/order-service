@@ -4,6 +4,7 @@ import {Email} from "../value-object/email";
 import {Password} from "../value-object/password";
 import {FullName} from "../value-object/full-name";
 import {UserId} from "../../value-object/user-id";
+import {UUID} from "crypto";
 
 export enum Roles{
     ADMIN = 'admin',
@@ -13,19 +14,22 @@ export enum Roles{
 
 export class User{
     constructor(
-        public id: UserId,
+        public  id: UserId,
         public fullName: FullName,
         public email: Email,
         public password: Password,
         public address: Address,
         public phoneNumber: PhoneNumber,
         public roles: Roles,
-
     ) {
     }
     static create(userId: UserId,userInfo: FullName, email: Email, password: Password, address: Address, phoneNumber: PhoneNumber, role: Roles){
         return new User(userId,userInfo, email, password, address, phoneNumber, role);
     }
+    getUUID(): UUID{
+        return this.id.id
+    }
+
     changePassword(newPassword: Password){
         this.password = new Password(newPassword.password);
     }
@@ -42,7 +46,7 @@ export class User{
         this.phoneNumber = new PhoneNumber(newPhoneNumber.phoneNumber);
     }
 
-    changeRoles(newRole: Roles){
+    changeRole(newRole: Roles){
         this.roles = newRole
     }
     changeFirstname(newName: string){

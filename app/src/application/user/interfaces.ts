@@ -6,5 +6,7 @@ export interface UserRepository {
 
     findUser(id: UUID): User
 
+    updateUserInfo(user: User): void
+
     saveUser(user: User): void
 }

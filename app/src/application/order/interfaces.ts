@@ -8,7 +8,7 @@ export interface OrderRepository {
     saveOrder(order: Order): void
     deleteOrder(id: UUID): void
     updateOrderStatus(order: Order): void
-    findOrder(id: UUID): Order
+    findOrder(id: UUID): Promise<Order>
 }
 
 
@@ -16,11 +16,3 @@ export interface OrderProductRepository{
     getProducts(id: UUID[]): Product[]
 }
 
-export interface OrderUserRepository{
-    findUserId(id: UUID): UserId
-}
-
-
-export interface OrderRestaurantRepository{
-    findRestaurantId(id: UUID): RestaurantId
-}

@@ -1,13 +1,11 @@
 import Pool from "pg-pool";
 import { Order, OrderStatus } from '../../../domain/order/entity/order';
-import { after, before } from "node:test";
+import { after } from "node:test";
 import { OrderRepo } from "./repo";
 import { RestaurantId } from "../../../domain/value-object/restuarant-id";
 import { Address } from "../../../domain/value-object/address";
 import { Amount } from "../../../domain/value-object/amount";
 import { Price } from "../../../domain/value-object/price";
-
-
 
 describe('OrderRepo Integration Tests', () => {
     let pool: Pool;
@@ -45,7 +43,7 @@ describe('OrderRepo Integration Tests', () => {
             const order = Order.create(1, 1, dateTime, totalPrice, status, 2, deliveryAddress, 1, [
                 {
                     id: 1,
-                    price: 30
+                    price: 30,
                 },
                 {
                     id: 1,
@@ -56,9 +54,57 @@ describe('OrderRepo Integration Tests', () => {
 
             const res = await pool.query('SELECT * FROM "order".order WHERE order_id = $1', [order.id]);
 
-            // expect(res).toBe(order.userId);?
+            // expect(res).toBe(order.userId);
         });
     });
 
+    describe("findOrder",() => {
+        it("should return order from database", async () => {
+            const order = await orderRepo.findOrder(15);
+            expect(order).toBeDefined();
+        })
+    })
 
+    describe("updateOrderStatus",() => {
+        it("should update order status", async () => {
+            const order = await orderRepo.findOrder(15);
+            order?.changeStatus(OrderStatus.Pending);
+            await orderRepo.updateOrderStatus(order);
+        })
+    })
+    describe('deleteOrder', () => {
+        it('should delete an order from the database', async () => {
+
+            const orderToBeDeleted = Order.create(
+                1,
+                1,
+                new Date(),
+                new Price(100.00),
+                OrderStatus.Created,
+                2,
+                new Address('street', 'houseNumber', 'apartmentNumber', 'city', 'country'),
+                1,
+                [
+                    {
+                        id: 1,
+                        price: 30,
+                    },
+                    {
+                        id: 1,
+                        price: 30
+                    }
+                ]
+            );
+            await orderRepo.saveOrder(orderToBeDeleted);
+
+
+            await orderRepo.deleteOrder(orderToBeDeleted.id);
+
+
+            const res = await pool.query('SELECT * FROM "order".order WHERE order_id = $1', [orderToBeDeleted.id]);
+
+
+            expect(res.rows.length).toBe(0);
+        });
+    });
 });
