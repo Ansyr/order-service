@@ -1,8 +1,8 @@
 
-import {Product} from "./entity/product";
-import {ProductId} from "../value-object/product-id";
-import {RestaurantId} from "../value-object/restuarant-id";
-import {Price} from "../value-object/price";
+import {Product} from "../../../../src/domain/product/entity/product";
+import {ProductId} from "../../../../src/domain/value-object/product-id";
+import {RestaurantId} from "../../../../src/domain/value-object/restuarant-id";
+import {Price} from "../../../../src/domain/value-object/price";
 import {randomUUID} from "crypto";
 
 
@@ -41,7 +41,7 @@ describe('Product', () => {
     });
 
     it('should update restaurant id', () => {
-        const newRestaurantId: RestaurantId = new RestaurantId(2);
+        const newRestaurantId: RestaurantId = new RestaurantId(randomUUID());
         product.updateRestaurantId(newRestaurantId);
         expect(product.restaurantId).toEqual(newRestaurantId);
     });

@@ -1,11 +1,11 @@
 import {describe} from "@jest/globals";
-import {Roles, User} from "./entity/user";
-import {Email} from "./value-object/email";
-import {Password} from "./value-object/password";
-import {Address} from "../value-object/address";
-import {PhoneNumber} from "./value-object/phone-number";
-import {FullName} from "./value-object/full-name";
-import {UserId} from "../value-object/user-id";
+import {Roles, User} from "../../../../src/domain/user/entity/user";
+import {Email} from "../../../../src/domain/user/value-object/email";
+import {Password} from "../../../../src/domain/user/value-object/password";
+import {Address} from "../../../../src/domain/value-object/address";
+import {PhoneNumber} from "../../../../src/domain/user/value-object/phone-number";
+import {FullName} from "../../../../src/domain/user/value-object/full-name";
+import {UserId} from "../../../../src/domain/value-object/user-id";
 
 describe('User', () => {
     const userId = new UserId(1)

@@ -29,3 +29,8 @@ export type changeUserInfoCommand = {
     address: Address
     role: Roles
 }
+
+
+export type DeleteUserCommand = {
+    id: UUID
+}

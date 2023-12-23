@@ -8,8 +8,8 @@ export class DeleteOrder{
         private orderRepo: OrderRepository
     ) {}
 
-    handle(command: DeleteOrderCommand): DeleteOrderDTO {
-        this.orderRepo.deleteOrder(command.OrderId)
+    async handle(command: DeleteOrderCommand): Promise<DeleteOrderDTO> {
+        await this.orderRepo.deleteOrder(command.OrderId)
         return {
             orderId: command.OrderId
         }

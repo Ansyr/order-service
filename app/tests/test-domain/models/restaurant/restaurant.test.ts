@@ -1,6 +1,6 @@
-import {Address} from "../value-object/address";
-import {RestaurantId} from "../value-object/restuarant-id";
-import {Restaurant} from "./entity/restaurant";
+import {Address} from "../../../../src/domain/value-object/address";
+import {RestaurantId} from "../../../../src/domain/value-object/restuarant-id";
+import {Restaurant} from "../../../../src/domain/restaurant/entity/restaurant";
 import {randomUUID} from "crypto";
 
 describe("Restaurant", () => {

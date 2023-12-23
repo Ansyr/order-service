@@ -1,8 +1,8 @@
-import {UserId} from "../value-object/user-id";
-import {Rating} from "./value-object/rating";
-import {Review} from "./entity/review";
-import {RestaurantId} from "../value-object/restuarant-id";
-import {ReviewId} from "./value-object/review-id";
+import {UserId} from "../../../../src/domain/value-object/user-id";
+import {Rating} from "../../../../src/domain/review/value-object/rating";
+import {Review} from "../../../../src/domain/review/entity/review";
+import {RestaurantId} from "../../../../src/domain/value-object/restuarant-id";
+import {ReviewId} from "../../../../src/domain/review/value-object/review-id";
 import {randomUUID} from "crypto";
 
 describe('Review', () => {

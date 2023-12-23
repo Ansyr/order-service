@@ -1,6 +1,6 @@
-import { OrderRepository } from "../../../application/order/interfaces";
-import { Order } from "../../../domain/order/entity/order";
-import { UUID } from "crypto";
+import {OrderRepository} from "../../../application/order/interfaces";
+import {Order} from "../../../domain/order/entity/order";
+import {UUID} from "crypto";
 import Pool from "pg-pool";
 import {
     deleteOrderQuery,
@@ -23,18 +23,18 @@ export class OrderRepo implements OrderRepository {
         try {
             await client.query('BEGIN');
 
-            const orderInsertValues = [order.userId, order.dateTime, order.amount, order.status, order.deliveryAddress, order.restaurantId];
-            const orderRes = await client.query(orderInsertTextQuery , orderInsertValues);
+            const orderInsertValues = [order.id.id, order.userId.id, order.dateTime, order.amount.amount, order.status, order.deliveryAddress.getFullAddress(), order.restaurantId.id];
+            const orderRes = await client.query(orderInsertTextQuery, orderInsertValues);
             const newOrderId = orderRes.rows[0].order_id;
-            const orderDetailValues = order.products.reduce((acc, product) => [...acc, newOrderId, product.id, product.price], [])
 
+            const orderDetailValues = order.products.map(product => [newOrderId, product.id.id, product.price.price]).flat();
             await client.query(getOrderDetailTextQuery(order.products.length), orderDetailValues);
 
             await client.query('COMMIT');
             console.log('Транзакция успешно выполнена, ID нового заказа:', newOrderId);
         } catch (e) {
             await client.query('ROLLBACK');
-            throw new Error("Failed to save order",e);
+            throw new Error("Failed to save order", e.message);
         } finally {
             client.release();
         }
@@ -80,18 +80,17 @@ export class OrderRepo implements OrderRepository {
             if (res.rows.length === 0) {
                 throw new Error('Order not found')
             }
-           const order = Order.create(
-               res.rows[0].order_id,
-               res.rows[0].user_id,
-               res.rows[0].date_time,
-               res.rows[0].total_price,
-               res.rows[0].status,
-               res.rows[0].amount,
-               res.rows[0].delivery_address,
-               res.rows[0].restaurant_id,
-               res.rows[0].products
-           )
-            return order
+            return Order.create(
+                res.rows[0].order_id,
+                res.rows[0].user_id,
+                res.rows[0].date_time,
+                res.rows[0].total_price,
+                res.rows[0].status,
+                res.rows[0].amount,
+                res.rows[0].delivery_address,
+                res.rows[0].restaurant_id,
+                res.rows[0].products
+            )
 
         }catch (e){
             throw new Error("Failed to find order",e)

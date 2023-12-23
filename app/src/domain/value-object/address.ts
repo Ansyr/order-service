@@ -2,7 +2,7 @@
 export class Address {
      street: string
      houseNumber: string
-     apartmentNumber: string
+     apartmentNumber?: string
      city: string
      country: string
 
@@ -12,5 +12,8 @@ export class Address {
        this.street = street
        this.houseNumber = houseNumber
        this.apartmentNumber = apartmentNumber
+   }
+   getFullAddress(): string {
+       return `${this.country} ${this.city} ${this.street} ${this.houseNumber} ${this.apartmentNumber}`
    }
 }

@@ -1,12 +1,12 @@
-import {OrderId} from "./value-object/order-id";
-import {UserId} from "../value-object/user-id";
-import {Price} from "../value-object/price";
-import {Order, OrderStatus} from "./entity/order";
-import {RestaurantId} from "../value-object/restuarant-id";
-import {Address} from "../value-object/address";
-import {Product} from "../product/entity/product";
-import {ProductId} from "../value-object/product-id";
-import {Amount} from "../value-object/amount";
+import {OrderId} from "../../../../src/domain/order/value-object/order-id";
+import {UserId} from "../../../../src/domain/value-object/user-id";
+import {Price} from "../../../../src/domain/value-object/price";
+import {Order, OrderStatus} from "../../../../src/domain/order/entity/order";
+import {RestaurantId} from "../../../../src/domain/value-object/restuarant-id";
+import {Address} from "../../../../src/domain/value-object/address";
+import {Product} from "../../../../src/domain/product/entity/product";
+import {ProductId} from "../../../../src/domain/value-object/product-id";
+import {Amount} from "../../../../src/domain/value-object/amount";
 import {randomUUID} from "crypto";
 
 describe('Order', () => {
