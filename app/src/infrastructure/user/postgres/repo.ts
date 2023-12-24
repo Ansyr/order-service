@@ -1,7 +1,7 @@
 import Pool from "pg-pool";
 import {UserRepository} from "../../../application/user/interfaces";
 import {User} from "../../../domain/user/entity/user";
-import {deleteUserQuery, userInsertQuery} from "./quiries";
+import {deleteUserQuery, findUserQuery, updateUserInfoQuery, userInsertQuery} from "./quiries";
 import {UUID} from "crypto";
 import {FullName} from "../../../domain/user/value-object/full-name";
 
@@ -47,7 +47,7 @@ export class UserRepo implements UserRepository {
    async findUser(id: UUID): Promise<User> {
         const client = await this.pool.connect()
        try {
-           const res = await client.query('SELECT * FROM "user".users WHERE user_id = $1', [id])
+           const res = await client.query(findUserQuery, [id])
            if (res.rows.length === 0) {
                throw new Error('User not found')
            }
@@ -69,9 +69,28 @@ export class UserRepo implements UserRepository {
        }
     }
 
-    async updateUserInfo(user: User): void {
+    async updateUserInfo(user: User) {
         const client = await this.pool.connect()
-
+        try {
+            await client.query('BEGIN')
+            await client.query(updateUserInfoQuery, [
+                user.id.id,
+                user.fullName.firstname,
+                user.fullName.lastname,
+                user.fullName.surname,
+                user.email.email,
+                user.phoneNumber.phoneNumber,
+                user.address.getFullAddress(),
+                user.password.password
+            ])
+            await client.query('COMMIT')
+        }catch (e){
+            console.error('Failed to update user info:', e);
+            await client.query('ROLLBACK')
+            throw new Error("Failed to update user info",e)
+        }finally {
+            client.release()
+        }
     }
 
 }

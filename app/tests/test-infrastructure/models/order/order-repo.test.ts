@@ -7,7 +7,6 @@ import {User} from "../../../../src/domain/user/entity/user";
 import {randomUUID} from "crypto";
 import {Restaurant} from "../../../../src/domain/restaurant/entity/restaurant";
 import {OrderId} from "../../../../src/domain/order/value-object/order-id";
-import {destroyTestData, initializeTestData, testDbPool} from "../../fixture/fixtures-test";
 import {UserId} from "../../../../src/domain/value-object/user-id";
 import {Email} from "../../../../src/domain/user/value-object/email";
 import {RestaurantId} from "../../../../src/domain/value-object/restuarant-id";
@@ -15,6 +14,9 @@ import {createUserFixture} from "../../fixture/db/create-user-fixture";
 import {createRestaurantFixture} from "../../fixture/db/create-restaurant-fixture";
 import {createProductFixture} from "../../fixture/db/create-product-fixture";
 import {findOrderById} from "../../fixture/queries";
+import {testDbPool} from "../../fixture/test-pool";
+import {after} from "node:test";
+import {destroyTestData} from "../../fixture/db/destroy-test-data";
 
 
 describe('OrderRepo Integration Tests', () => {
@@ -23,8 +25,12 @@ describe('OrderRepo Integration Tests', () => {
     let user: User
     let order: Order
     beforeAll(async () => {
-        await initializeTestData()
+        await testDbPool.connect()
         orderRepo = new OrderRepo(testDbPool);
+    });
+
+    afterEach(async () => {
+        await destroyTestData();
     });
     beforeEach(async () => {
 
@@ -55,6 +61,7 @@ describe('OrderRepo Integration Tests', () => {
     afterEach(async () => {
         await destroyTestData();
     });
+
 
     describe('saveOrder', () => {
         it('should save an order to the database', async () => {

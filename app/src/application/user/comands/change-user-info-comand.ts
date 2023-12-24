@@ -14,6 +14,7 @@ export class ChangeUserInfoCommand{
         user.changeLastname(command.lastname)
         user.changeSurname(command.surname)
         user.changeRole(command.role)
+        user.changePassword(command.password)
         await this.userRepo.updateUserInfo(user)
     }
 }

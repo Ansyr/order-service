@@ -2,7 +2,7 @@ import {Address} from "../../../../src/domain/value-object/address";
 import {RestaurantId} from "../../../../src/domain/value-object/restuarant-id";
 import {Restaurant} from "../../../../src/domain/restaurant/entity/restaurant";
 import {insertRestaurantQuery} from "../queries";
-import {testDbPool} from "../fixtures-test";
+import {testDbPool} from "../test-pool";
 
 export const createRestaurantFixture = async (restaurantId: RestaurantId) : Promise<Restaurant> => {
     const restaurantName = 'Test Restaurant';

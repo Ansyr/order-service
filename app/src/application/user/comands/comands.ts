@@ -3,6 +3,7 @@ import {UUID} from "crypto";
 import {Email} from "../../../domain/user/value-object/email";
 import {PhoneNumber} from "../../../domain/user/value-object/phone-number";
 import {Address} from "../../../domain/value-object/address";
+import {Password} from "../../../domain/user/value-object/password";
 
 export type CreateUserCommand = {
     firstName: string
@@ -28,6 +29,7 @@ export type changeUserInfoCommand = {
     email: Email
     address: Address
     role: Roles
+    password: Password
 }
 
 
