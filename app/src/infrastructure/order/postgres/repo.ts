@@ -6,7 +6,7 @@ import {
     deleteOrderQuery,
     findOrderQuery,
     getOrderDetailTextQuery,
-    orderInsertTextQuery,
+    orderInsertTextQuery, orderInsertTextQueryAndReturnOrderId,
     updateOrderStatusQuery
 } from "./quries";
 
@@ -22,10 +22,8 @@ export class OrderRepo implements OrderRepository {
         const client = await this.pool.connect();
         try {
             await client.query('BEGIN');
-            console.log(order)
             const orderInsertValues = [order.id.id, order.userId.id, order.dateTime, order.amount.amount, order.status, order.deliveryAddress.getFullAddress(), order.restaurantId.id];
-            const orderRes = await client.query(orderInsertTextQuery, orderInsertValues);
-            console.log(orderRes);
+            const orderRes = await client.query(orderInsertTextQueryAndReturnOrderId, orderInsertValues);
             const newOrderId = orderRes.rows[0].order_id;
 
             const orderDetailValues = order.products.map(product => [newOrderId, product.id.id, product.price.price]).flat();
