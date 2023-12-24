@@ -1,26 +1,25 @@
-import {UserRepo} from "../../../../src/infrastructure/user/postgres/repo";
-import {Roles, User} from "../../../../src/domain/user/entity/user";
-import { testDbPool} from "../../fixture/test-pool";
-import {UserId} from "../../../../src/domain/value-object/user-id";
-import {randomUUID} from "crypto";
-import {FullName} from "../../../../src/domain/user/value-object/full-name";
-import {Email} from "../../../../src/domain/user/value-object/email";
-import {Password} from "../../../../src/domain/user/value-object/password";
-import {Address} from "../../../../src/domain/value-object/address";
-import {PhoneNumber} from "../../../../src/domain/user/value-object/phone-number";
-import {findUserById} from "../../fixture/queries";
-import {destroyTestData} from "../../fixture/db/destroy-test-data";
-import {after} from "node:test";
+import { UserRepo } from "../../../../src/infrastructure/user/postgres/repo";
+import { Roles, User } from "../../../../src/domain/user/entity/user";
+import { testDbPool } from "../../fixture/test-pool";
+import { UserId } from "../../../../src/domain/value-object/user-id";
+import { randomUUID } from "crypto";
+import { FullName } from "../../../../src/domain/user/value-object/full-name";
+import { Email } from "../../../../src/domain/user/value-object/email";
+import { Password } from "../../../../src/domain/user/value-object/password";
+import { Address } from "../../../../src/domain/value-object/address";
+import { PhoneNumber } from "../../../../src/domain/user/value-object/phone-number";
+import { findUserById } from "../../fixture/queries";
+import { destroyTestData } from "../../fixture/db/destroy-test-data";
+import { after } from "node:test";
 
 describe('UserRepo Integration Tests', () => {
     let userRepo: UserRepo;
     let user: User;
     beforeAll(async () => {
-        await testDbPool.connect()
         userRepo = new UserRepo(testDbPool);
     });
 
-    beforeEach( async () => {
+    beforeEach(() => {
         const userId = new UserId(randomUUID());
         const fullName = new FullName('Vautin', 'Sergey', 'Sergeevich');
         const email = new Email('vasutin203@gmail.com');
@@ -65,7 +64,7 @@ describe('UserRepo Integration Tests', () => {
         });
     });
 
-    describe('update user',() => {
+    describe('update user', () => {
         it('should update a user', async () => {
             await userRepo.saveUser(user);
             user.changeEmail(new Email('vasutin203@gmail.com'));

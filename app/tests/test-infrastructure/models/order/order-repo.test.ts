@@ -1,22 +1,22 @@
-import {Order, OrderStatus} from '../../../../src/domain/order/entity/order';
-import {OrderRepo} from "../../../../src/infrastructure/order/postgres/repo";
-import {Address} from "../../../../src/domain/value-object/address";
-import {Amount} from "../../../../src/domain/value-object/amount";
-import {Price} from "../../../../src/domain/value-object/price";
-import {User} from "../../../../src/domain/user/entity/user";
-import {randomUUID} from "crypto";
-import {Restaurant} from "../../../../src/domain/restaurant/entity/restaurant";
-import {OrderId} from "../../../../src/domain/order/value-object/order-id";
-import {UserId} from "../../../../src/domain/value-object/user-id";
-import {Email} from "../../../../src/domain/user/value-object/email";
-import {RestaurantId} from "../../../../src/domain/value-object/restuarant-id";
-import {createUserFixture} from "../../fixture/db/create-user-fixture";
-import {createRestaurantFixture} from "../../fixture/db/create-restaurant-fixture";
-import {createProductFixture} from "../../fixture/db/create-product-fixture";
-import {findOrderById} from "../../fixture/queries";
-import {testDbPool} from "../../fixture/test-pool";
-import {after} from "node:test";
-import {destroyTestData} from "../../fixture/db/destroy-test-data";
+import { Order, OrderStatus } from '../../../../src/domain/order/entity/order';
+import { OrderRepo } from "../../../../src/infrastructure/order/postgres/repo";
+import { Address } from "../../../../src/domain/value-object/address";
+import { Amount } from "../../../../src/domain/value-object/amount";
+import { Price } from "../../../../src/domain/value-object/price";
+import { User } from "../../../../src/domain/user/entity/user";
+import { randomUUID } from "crypto";
+import { Restaurant } from "../../../../src/domain/restaurant/entity/restaurant";
+import { OrderId } from "../../../../src/domain/order/value-object/order-id";
+import { UserId } from "../../../../src/domain/value-object/user-id";
+import { Email } from "../../../../src/domain/user/value-object/email";
+import { RestaurantId } from "../../../../src/domain/value-object/restuarant-id";
+import { createUserFixture } from "../../fixture/db/create-user-fixture";
+import { createRestaurantFixture } from "../../fixture/db/create-restaurant-fixture";
+import { createProductFixture } from "../../fixture/db/create-product-fixture";
+import { findOrderById } from "../../fixture/queries";
+import { testDbPool } from "../../fixture/test-pool";
+import { after } from "node:test";
+import { destroyTestData } from "../../fixture/db/destroy-test-data";
 
 
 describe('OrderRepo Integration Tests', () => {
@@ -25,7 +25,6 @@ describe('OrderRepo Integration Tests', () => {
     let user: User
     let order: Order
     beforeAll(async () => {
-        await testDbPool.connect()
         orderRepo = new OrderRepo(testDbPool);
     });
 
@@ -81,7 +80,7 @@ describe('OrderRepo Integration Tests', () => {
     describe("findOrder", () => {
         it("should return order from database", async () => {
             await orderRepo.saveOrder(order);
-            const findOrder =   await orderRepo.findOrder(order.id.id);
+            const findOrder = await orderRepo.findOrder(order.id.id);
             expect(findOrder).toBeDefined();
         })
     })
