@@ -7,9 +7,9 @@ import { FullName } from "../../../domain/user/value-object/full-name";
 
 
 export class UserRepo implements UserRepository {
-    private pool: Pool
+    private pool: Pool<any>
 
-    constructor(pool: Pool) {
+    constructor(pool: Pool<any>) {
         this.pool = pool
     }
 
@@ -23,7 +23,7 @@ export class UserRepo implements UserRepository {
             await client.query('COMMIT')
         } catch (e) {
             await client.query('ROLLBACK')
-            throw new Error("Ошибка при создании пользователя", e.message)
+            console.error('Failed to save user:', e);
         } finally {
             client.release()
         }
@@ -38,13 +38,13 @@ export class UserRepo implements UserRepository {
             await client.query('COMMIT')
         } catch (e) {
             await client.query('ROLLBACK')
-            throw new Error("Failed to delete user", e)
+            console.error('Failed to delete user:', e);
         } finally {
             client.release()
         }
     }
 
-    async findUser(id: UUID): Promise<User> {
+    async findUser(id: UUID): Promise<User | null> {
         const client = await this.pool.connect()
         try {
             const res = await client.query(findUserQuery, [id])
@@ -63,7 +63,7 @@ export class UserRepo implements UserRepository {
             )
         } catch (e) {
             console.error('Failed to find user:', e);
-            throw new Error("Failed to find user", e)
+            return null
         } finally {
             client.release()
         }
@@ -87,7 +87,6 @@ export class UserRepo implements UserRepository {
         } catch (e) {
             console.error('Failed to update user info:', e);
             await client.query('ROLLBACK')
-            throw new Error("Failed to update user info", e)
         } finally {
             client.release()
         }

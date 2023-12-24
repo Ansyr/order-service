@@ -1,5 +1,5 @@
 import { Order, OrderStatus } from '../../../../src/domain/order/entity/order';
-import { OrderRepo } from "../../../../src/infrastructure/order/postgres/repo";
+
 import { Address } from "../../../../src/domain/value-object/address";
 import { Amount } from "../../../../src/domain/value-object/amount";
 import { Price } from "../../../../src/domain/value-object/price";
@@ -15,8 +15,8 @@ import { createRestaurantFixture } from "../../fixture/db/create-restaurant-fixt
 import { createProductFixture } from "../../fixture/db/create-product-fixture";
 import { findOrderById } from "../../fixture/queries";
 import { testDbPool } from "../../fixture/test-pool";
-import { after } from "node:test";
 import { destroyTestData } from "../../fixture/db/destroy-test-data";
+import {OrderRepo} from "../../../../src/infrastructure/order/postgres/order-repo/order-repo";
 
 
 describe('OrderRepo Integration Tests', () => {

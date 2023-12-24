@@ -1,4 +1,5 @@
-import {UUID} from "sequelize";
+import {UUID} from "crypto";
+
 
 export type CreateUserDTO = {
     userId: UUID
@@ -7,3 +8,5 @@ export type CreateUserDTO = {
 export type DeleteUserDTO = {
     userId: UUID
 }
+
+

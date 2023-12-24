@@ -17,11 +17,14 @@ export class CreateOrder {
     ) {
     }
 
-    handle(command: CreateOrderCommand): CreatedOrderDTO {
+    async handle(command: CreateOrderCommand): Promise<CreatedOrderDTO> {
         const amount = new Amount(command.amount);
         const price = new Price(command.totalPrice);
         const address = new Address(command.country, command.city, command.street, command.houseNumber, command.apartmentNumber);
-        const products = this.orderProductRepo.getProducts(command.products)
+
+        const products = await this.orderProductRepo.getProducts(command.products.map((id: any) => id.productId))
+        console.log(products)
+
         const orderStatus = OrderStatus.Created
         const createdTime = new Date()
 

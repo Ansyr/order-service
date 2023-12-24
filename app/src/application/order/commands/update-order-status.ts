@@ -5,7 +5,9 @@ import {UpdateOrderStatusCommand} from "./commands";
 export class UpdateOrderStatus {
     constructor(
         private orderRepo: OrderRepository
-    ){}
+    ) {
+    }
+
     async handle(command: UpdateOrderStatusCommand): Promise<UpdateOrderStatusDTO> {
         const order = await this.orderRepo.findOrder(command.orderId);
         if (!order) {

@@ -1,9 +1,6 @@
 import {Roles} from "../../../domain/user/entity/user";
 import {UUID} from "crypto";
-import {Email} from "../../../domain/user/value-object/email";
-import {PhoneNumber} from "../../../domain/user/value-object/phone-number";
-import {Address} from "../../../domain/value-object/address";
-import {Password} from "../../../domain/user/value-object/password";
+
 
 export type CreateUserCommand = {
     firstName: string
@@ -25,11 +22,15 @@ export type changeUserInfoCommand = {
     firstname: string
     lastname: string
     surname: string
-    phoneNumber: PhoneNumber
-    email: Email
-    address: Address
+    phoneNumber: string
+    email: string
+    country: string
+    city: string
+    street: string
+    houseNumber: string
+    apartmentNumber: string
     role: Roles
-    password: Password
+    password: string
 }
 
 

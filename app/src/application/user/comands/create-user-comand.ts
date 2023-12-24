@@ -1,6 +1,5 @@
 import {UserRepository} from "../interfaces";
 import {CreateUserCommand} from "./comands";
-import {CreateUserDTO} from "./dto";
 import {Roles, User} from "../../../domain/user/entity/user";
 import {PhoneNumber} from "../../../domain/user/value-object/phone-number";
 import {Address} from "../../../domain/value-object/address";
@@ -13,10 +12,8 @@ import {randomUUID} from "crypto";
 export class CreateUser {
     constructor(
         private userRepo: UserRepository
-    ) {
-    }
-
-    handle(command: CreateUserCommand): CreateUserDTO {
+    ) { }
+    handle(command: CreateUserCommand) {
         const userId = new UserId(randomUUID())
         const userInfo = new FullName(command.firstName, command.lastName, command.surname)
         const email = new Email(command.email)
@@ -26,8 +23,5 @@ export class CreateUser {
         const role = Roles.USER
         const user = User.create(userId, userInfo, email, password, address, phoneNumber, role)
         this.userRepo.saveUser(user)
-        return {
-            userId: user.getUUID()
-        }
     }   
 }

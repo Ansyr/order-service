@@ -8,6 +8,7 @@ type DbConfig = {
 
 export const loadDbConfig = (): DbConfig => {
   const port = parseInt(process.env.POSTGRES_PORT as string);
+
   if (!port) {
     throw new Error('Need POSTGRES_PORT on environment');
   }

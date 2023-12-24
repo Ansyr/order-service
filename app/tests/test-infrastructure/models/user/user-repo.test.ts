@@ -10,7 +10,6 @@ import { Address } from "../../../../src/domain/value-object/address";
 import { PhoneNumber } from "../../../../src/domain/user/value-object/phone-number";
 import { findUserById } from "../../fixture/queries";
 import { destroyTestData } from "../../fixture/db/destroy-test-data";
-import { after } from "node:test";
 
 describe('UserRepo Integration Tests', () => {
     let userRepo: UserRepo;
@@ -37,7 +36,7 @@ describe('UserRepo Integration Tests', () => {
 
 
 
-    describe('createUser', () => {
+    describe('user-repo', () => {
         it('should create a new user', async () => {
             await userRepo.saveUser(user);
             const queryResult = await testDbPool.query(findUserById, [user.id.id]);
@@ -45,26 +44,17 @@ describe('UserRepo Integration Tests', () => {
             expect(createdUser).toBeDefined();
             expect(createdUser.email).toEqual(user.email.email);
         });
-    });
-
-    describe('deleteUser', () => {
         it('should delete a user', async () => {
             await userRepo.deleteUser(user.id.id);
             const queryResult = await testDbPool.query(findUserById, [user.id.id]);
             expect(queryResult.rows.length).toBe(0);
         });
-    });
-
-    describe('find user', () => {
         it('should find a user', async () => {
             await userRepo.saveUser(user);
             const foundUser = await userRepo.findUser(user.id.id);
             expect(foundUser).toBeDefined();
             expect(foundUser.email).toEqual(user.email.email);
         });
-    });
-
-    describe('update user', () => {
         it('should update a user', async () => {
             await userRepo.saveUser(user);
             user.changeEmail(new Email('vasutin203@gmail.com'));
@@ -74,6 +64,6 @@ describe('UserRepo Integration Tests', () => {
             expect(updatedUser).toBeDefined();
             expect(updatedUser.email).toEqual(user.email.email);
         });
-    })
+    });
 
 });

@@ -6,7 +6,7 @@ export const insertUserQuery = `INSERT INTO "user".users (user_id, first_name, l
                                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`
 
 
-export const insertProductQuery = 'INSERT INTO product.product(product_id, name, price, description, restaurant_id,available) VALUES ($1, $2, $3, $4, $5, $6)'
+export const insertProductQuery = 'INSERT INTO product.product(product_id, name, price, description, restaurant_id,available) VALUES ($1, $2, $3, $4, $5, $6);'
 
 
 
