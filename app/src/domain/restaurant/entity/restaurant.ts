@@ -7,12 +7,13 @@ export class Restaurant {
     private constructor(
         public id: RestaurantId,
         public name: string,
-        public address: Address
+        public address: Address,
+        public cuisineType?: string
     ) {
     }
 
-    static create(id: RestaurantId, name: string, address: Address) {
-        return new Restaurant(id, name, address);
+    static create(restaurantId: RestaurantId, name: string, address: Address, cuisineType?: string) {
+        return new Restaurant(restaurantId, name, address, cuisineType);
     }
 
     changeName(newName: string) {
@@ -21,5 +22,8 @@ export class Restaurant {
 
     changeAddress(newAddress: Address) {
         this.address = newAddress
+    }
+    changeCuisineType(newCuisineType: string) {
+        this.cuisineType = newCuisineType
     }
 }

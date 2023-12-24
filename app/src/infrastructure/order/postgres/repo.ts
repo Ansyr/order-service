@@ -22,9 +22,10 @@ export class OrderRepo implements OrderRepository {
         const client = await this.pool.connect();
         try {
             await client.query('BEGIN');
-
+            console.log(order)
             const orderInsertValues = [order.id.id, order.userId.id, order.dateTime, order.amount.amount, order.status, order.deliveryAddress.getFullAddress(), order.restaurantId.id];
             const orderRes = await client.query(orderInsertTextQuery, orderInsertValues);
+            console.log(orderRes);
             const newOrderId = orderRes.rows[0].order_id;
 
             const orderDetailValues = order.products.map(product => [newOrderId, product.id.id, product.price.price]).flat();
@@ -33,6 +34,7 @@ export class OrderRepo implements OrderRepository {
             await client.query('COMMIT');
             console.log('Транзакция успешно выполнена, ID нового заказа:', newOrderId);
         } catch (e) {
+            console.error('Failed to save order:', e);
             await client.query('ROLLBACK');
             throw new Error("Failed to save order", e.message);
         } finally {

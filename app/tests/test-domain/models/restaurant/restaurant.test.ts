@@ -29,4 +29,10 @@ describe("Restaurant", () => {
         restaurant.changeAddress(newAddress);
         expect(restaurant.address).toEqual(newAddress);
     })
+
+    it('should change cusine type', () => {
+        const newCuisineType = "newCuisineType";
+        restaurant.changeCuisineType(newCuisineType);
+        expect(restaurant.cuisineType).toEqual(newCuisineType);
+    });
 })
