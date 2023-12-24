@@ -3,7 +3,7 @@ import {RestaurantId} from "../../../../src/domain/value-object/restuarant-id";
 import {Price} from "../../../../src/domain/value-object/price";
 import {ProductId} from "../../../../src/domain/value-object/product-id";
 import {insertProductQuery} from "../queries";
-import {testDbPool} from "../fixtures.test";
+import {testDbPool} from "../fixtures-test";
 
 export const createProductFixture = async (productId: ProductId, restaurantId: RestaurantId): Promise<Product> => {
     const name = 'Product'

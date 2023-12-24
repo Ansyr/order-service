@@ -7,13 +7,14 @@ import {User} from "../../../../src/domain/user/entity/user";
 import {randomUUID} from "crypto";
 import {Restaurant} from "../../../../src/domain/restaurant/entity/restaurant";
 import {OrderId} from "../../../../src/domain/order/value-object/order-id";
-import {destroyTestData, initializeTestData, testDbPool} from "../../fixture/fixtures.test";
+import {destroyTestData, initializeTestData, testDbPool} from "../../fixture/fixtures-test";
 import {UserId} from "../../../../src/domain/value-object/user-id";
 import {Email} from "../../../../src/domain/user/value-object/email";
 import {RestaurantId} from "../../../../src/domain/value-object/restuarant-id";
 import {createUserFixture} from "../../fixture/db/create-user-fixture";
 import {createRestaurantFixture} from "../../fixture/db/create-restaurant-fixture";
 import {createProductFixture} from "../../fixture/db/create-product-fixture";
+import {findOrderById} from "../../fixture/queries";
 
 
 describe('OrderRepo Integration Tests', () => {
@@ -21,10 +22,12 @@ describe('OrderRepo Integration Tests', () => {
     let restaurant: Restaurant;
     let user: User
     let order: Order
-
     beforeAll(async () => {
         await initializeTestData()
         orderRepo = new OrderRepo(testDbPool);
+    });
+    beforeEach(async () => {
+
         const userId = new UserId(randomUUID())
         const email = new Email('test123123@test');
         user = await createUserFixture(userId, email)
@@ -49,7 +52,7 @@ describe('OrderRepo Integration Tests', () => {
     });
 
 
-    afterAll(async () => {
+    afterEach(async () => {
         await destroyTestData();
     });
 
@@ -70,6 +73,7 @@ describe('OrderRepo Integration Tests', () => {
 
     describe("findOrder", () => {
         it("should return order from database", async () => {
+            await orderRepo.saveOrder(order);
             const findOrder =   await orderRepo.findOrder(order.id.id);
             expect(findOrder).toBeDefined();
         })
@@ -77,6 +81,7 @@ describe('OrderRepo Integration Tests', () => {
 
     describe("updateOrderStatus", () => {
         it("should update order status", async () => {
+            await orderRepo.saveOrder(order);
             const findOrder = await orderRepo.findOrder(order.id.id);
             if (findOrder) {
                 findOrder.changeStatus(OrderStatus.Pending);
@@ -89,8 +94,9 @@ describe('OrderRepo Integration Tests', () => {
     })
     describe('deleteOrder', () => {
         it('should delete an order from the database', async () => {
+            await orderRepo.saveOrder(order);
             await orderRepo.deleteOrder(order.id.id);
-            const res = await testDbPool.query('SELECT * FROM "order".order WHERE order_id = $1', [order.id.id]);
+            const res = await testDbPool.query(findOrderById, [order.id.id]);
             expect(res.rows.length).toBe(0);
         });
     });

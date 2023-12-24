@@ -7,3 +7,11 @@ export const insertUserQuery = `INSERT INTO "user".users (user_id, first_name, l
 
 
 export const insertProductQuery = 'INSERT INTO product.product(product_id, name, price, description, restaurant_id,available) VALUES ($1, $2, $3, $4, $5, $6)'
+
+
+
+export const findUserById = `SELECT * FROM "user".users WHERE user_id = $1;`
+
+
+
+export const findOrderById = `SELECT * FROM "order".order WHERE order_id = $1;`

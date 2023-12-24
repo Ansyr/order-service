@@ -4,7 +4,7 @@ import {User} from "../../domain/user/entity/user";
 export interface UserRepository {
     deleteUser(id: UUID): void
 
-    findUser(id: UUID): User
+    findUser(id: UUID): Promise<User>
 
     updateUserInfo(user: User): void
 

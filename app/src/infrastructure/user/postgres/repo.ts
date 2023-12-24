@@ -1,8 +1,9 @@
 import Pool from "pg-pool";
 import {UserRepository} from "../../../application/user/interfaces";
 import {User} from "../../../domain/user/entity/user";
-import {userInsertQuery} from "./quiries";
+import {deleteUserQuery, userInsertQuery} from "./quiries";
 import {UUID} from "crypto";
+import {FullName} from "../../../domain/user/value-object/full-name";
 
 
 export class UserRepo implements UserRepository {
@@ -28,14 +29,49 @@ export class UserRepo implements UserRepository {
         }
     }
 
-    deleteUser(id: UUID): void {
+    async deleteUser(id: UUID) {
+        const client = await this.pool.connect()
+        try {
+            await client.query('BEGIN')
+
+            await client.query(deleteUserQuery, [id])
+            await client.query('COMMIT')
+        }catch (e){
+            await client.query('ROLLBACK')
+            throw new Error("Failed to delete user",e)
+        }finally {
+            client.release()
+        }
     }
 
-    findUser(id: UUID): User {
-        return ;
+   async findUser(id: UUID): Promise<User> {
+        const client = await this.pool.connect()
+       try {
+           const res = await client.query('SELECT * FROM "user".users WHERE user_id = $1', [id])
+           if (res.rows.length === 0) {
+               throw new Error('User not found')
+           }
+           const userFullName = new FullName(res.rows[0].first_name, res.rows[0].last_name, res.rows[0].sur_name)
+           return User.create(
+               res.rows[0].user_id,
+               userFullName,
+               res.rows[0].email,
+               res.rows[0].phone,
+               res.rows[0].address,
+               res.rows[0].password_hash,
+               res.rows[0].role
+           )
+       }catch (e){
+           console.error('Failed to find user:', e);
+            throw new Error("Failed to find user",e)
+       }finally {
+           client.release()
+       }
     }
 
-    updateUserInfo(user: User): void {
+    async updateUserInfo(user: User): void {
+        const client = await this.pool.connect()
+
     }
 
 }

@@ -5,7 +5,7 @@ import {Password} from "../../../../src/domain/user/value-object/password";
 import {Address} from "../../../../src/domain/value-object/address";
 import {PhoneNumber} from "../../../../src/domain/user/value-object/phone-number";
 import {Roles, User} from "../../../../src/domain/user/entity/user";
-import {testDbPool} from "../fixtures.test";
+import {testDbPool} from "../fixtures-test";
 import {insertUserQuery} from "../queries";
 
 export const createUserFixture = async (userId: UserId,email: Email) : Promise<User> => {

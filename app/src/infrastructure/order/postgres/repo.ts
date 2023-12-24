@@ -6,7 +6,7 @@ import {
     deleteOrderQuery,
     findOrderQuery,
     getOrderDetailTextQuery,
-    orderInsertTextQuery, orderInsertTextQueryAndReturnOrderId,
+     orderInsertTextQueryAndReturnOrderId,
     updateOrderStatusQuery
 } from "./quries";
 
@@ -30,7 +30,6 @@ export class OrderRepo implements OrderRepository {
             await client.query(getOrderDetailTextQuery(order.products.length), orderDetailValues);
 
             await client.query('COMMIT');
-            console.log('Транзакция успешно выполнена, ID нового заказа:', newOrderId);
         } catch (e) {
             console.error('Failed to save order:', e);
             await client.query('ROLLBACK');
