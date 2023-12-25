@@ -14,6 +14,7 @@ import {DeleteOrder} from "../src/application/order/commands/delete-order";
 import {DeleteUser} from "../src/application/user/comands/delete-user-comand";
 import {UserService} from "../src/application/user/service/user-service";
 import {OrderService} from "../src/application/order/service/order-service";
+import {RestaurantService} from "../src/application/restaurant/service/restaurant-service";
 
 require('dotenv').config()
 
@@ -21,23 +22,17 @@ async function main() {
     const userRepo = new UserRepo(pool)
     const userService = new UserService(userRepo)
 
-
     const orderRepo = new OrderRepo(pool)
     const orderProductRepo = new OrderProductRepo(pool)
     const orderService = new OrderService(orderRepo, orderProductRepo)
 
-
     const restaurantRepo = new RestaurantRepo(pool)
-    const createRestaurant = new CreateRestaurant(restaurantRepo)
-    const deleteRestaurant = new DeleteRestaurant(restaurantRepo)
-    const updateRestaurant = new UpdateRestaurant(restaurantRepo)
+    const restaurantService = new RestaurantService(restaurantRepo)
 
     await startApp({
         userService,
         orderService,
-        createRestaurant,
-        updateRestaurant,
-        deleteRestaurant,
+        restaurantService
     })
 }
 

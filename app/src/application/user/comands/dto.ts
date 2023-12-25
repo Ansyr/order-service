@@ -7,6 +7,7 @@ export type CreateUserDTO = {
 
 export type DeleteUserDTO = {
     userId: string
+
 }
 
 

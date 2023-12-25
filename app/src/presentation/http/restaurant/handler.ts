@@ -1,18 +1,14 @@
-import {CreateRestaurant} from "../../../application/restaurant/commands/create-restaurant";
 import {
     CreateRestaurantCommand,
     DeleteRestaurantCommand,
     UpdateRestaurantCommand
 } from "../../../application/restaurant/commands/commands";
 import {Request, Response} from "express";
-import {UpdateRestaurant} from "../../../application/restaurant/commands/update-restaurant";
-import {DeleteRestaurant} from "../../../application/restaurant/commands/delete-restaurant";
 import {DeleteRestaurantDTO} from "../../../application/restaurant/commands/dto";
+import {RestaurantService} from "../../../application/restaurant/service/restaurant-service";
 export class RestaurantHandler {
     constructor(
-        private createRestaurant5: CreateRestaurant,
-        private updateRestaurant5: UpdateRestaurant,
-        private deleteRestaurant5: DeleteRestaurant
+        private restaurantService: RestaurantService
     ) {}
 
     async createRestaurant(req: Request, res: Response){
@@ -29,7 +25,7 @@ export class RestaurantHandler {
             cuisineType: req.body.cuisineType
         }
 
-        const result =  this.createRestaurant5.handle(command)
+        const result =  this.restaurantService.createRestaurant.handle(command)
         res.status(201).send(result)
     }
 
@@ -45,7 +41,7 @@ export class RestaurantHandler {
             apartmentNumber: req.body.apartmentNumber,
             cuisineType: req.body.cuisineType
         }
-        const result = await this.updateRestaurant5.handle(command)
+        const result = await this.restaurantService.updateRestaurant.handle(command)
         res.status(200).send(result)
     }
 
@@ -53,7 +49,7 @@ export class RestaurantHandler {
         const command: DeleteRestaurantCommand = {
             restaurantId: req.params.restaurantId
         }
-        const result: DeleteRestaurantDTO = await this.deleteRestaurant5.handle(command)
+        const result: DeleteRestaurantDTO = await this.restaurantService.deleteRestaurant.handle(command)
         res.status(200).send(result)
     }
 }
