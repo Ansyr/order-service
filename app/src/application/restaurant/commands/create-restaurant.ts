@@ -4,13 +4,14 @@ import {Restaurant} from "../../../domain/restaurant/entity/restaurant";
 import {RestaurantId} from "../../../domain/value-object/restuarant-id";
 import {Address} from "../../../domain/value-object/address";
 import {CreateRestaurantDTO} from "./dto";
+import {randomUUID} from "crypto";
 
 export class CreateRestaurant{
     constructor(
         private restaurantRepo: RestaurantRepository
     ) {}
     handle(command: CreateRestaurantCommand): CreateRestaurantDTO {
-        const restaurantId = new RestaurantId(command.restaurantId)
+        const restaurantId = new RestaurantId(randomUUID())
         const address = new Address(command.country, command.city, command.street, command.houseNumber,command.apartmentNumber)
         const restaurant = Restaurant.create(restaurantId, command.name, address, command.cuisineType)
         this.restaurantRepo.saveRestaurant(restaurant)

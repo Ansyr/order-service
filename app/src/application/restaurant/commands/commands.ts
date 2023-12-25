@@ -1,7 +1,5 @@
-import {UUID} from "crypto";
 
 export type CreateRestaurantCommand = {
-    restaurantId: UUID
     name: string
     description: string
     city: string

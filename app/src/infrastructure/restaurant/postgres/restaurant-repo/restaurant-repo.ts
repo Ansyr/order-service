@@ -14,8 +14,10 @@ export class RestaurantRepo implements RestaurantRepository {
         const client = await this.pool.connect();
         try {
             await client.query('BEGIN');
-            const restaurantInsertValues = [restaurant.id.id, restaurant.name, restaurant.address.getFullAddress(), restaurant.cuisineType];
+            const restaurantInsertValues = [restaurant.id.id,restaurant.name, restaurant.address.getFullAddress(), restaurant.cuisineType];
             await client.query(insertRestaurantQuery, restaurantInsertValues);
+
+
             await client.query('COMMIT');
         } catch (e) {
             console.error('Failed to save restaurant:', e);

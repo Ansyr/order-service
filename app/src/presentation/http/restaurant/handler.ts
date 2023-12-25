@@ -14,7 +14,6 @@ export class RestaurantHandler {
     async createRestaurant(req: Request, res: Response){
 
         const command : CreateRestaurantCommand = {
-            restaurantId: req.body.restaurantId,
             name: req.body.name,
             description: req.body.description,
             city: req.body.city,

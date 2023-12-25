@@ -62,8 +62,7 @@ CREATE TABLE IF NOT EXISTS product.product
     name          VARCHAR(255)   NOT NULL,
     description   TEXT,
     price         DECIMAL(10, 2) NOT NULL,
-    restaurant_id UUID REFERENCES restaurant.restaurant (restaurant_id),
-    available     BOOLEAN        NOT NULL
+    restaurant_id UUID REFERENCES restaurant.restaurant (restaurant_id)
 );
 
 -- Создание таблицы OrderDetails

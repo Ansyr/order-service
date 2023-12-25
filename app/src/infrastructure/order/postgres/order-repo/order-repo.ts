@@ -36,9 +36,6 @@ export class OrderRepo implements OrderRepository {
         }
     }
 
-
-
-
     async deleteOrder(id: UUID) {
         const client = await this.pool.connect()
         try{
