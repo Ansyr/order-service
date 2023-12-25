@@ -5,16 +5,40 @@ import {pool} from "../pkg/postgres/pool";
 import {CreateOrder} from "../src/application/order/commands/create-order";
 import {OrderRepo} from "../src/infrastructure/order/postgres/order-repo/order-repo";
 import {OrderProductRepo} from "../src/infrastructure/order/postgres/order-product-repo/order-product-repo";
+import {RestaurantRepo} from "../src/infrastructure/restaurant/postgres/restaurant-repo/restaurant-repo";
+import {CreateRestaurant} from "../src/application/restaurant/commands/create-restaurant";
+import {UpdateRestaurant} from "../src/application/restaurant/commands/update-restaurant";
+import {DeleteRestaurant} from "../src/application/restaurant/commands/delete-restaurant";
+import {UpdateOrderStatus} from "../src/application/order/commands/update-order-status";
+import {DeleteOrder} from "../src/application/order/commands/delete-order";
+import {DeleteUser} from "../src/application/user/comands/delete-user-comand";
+import {UserService} from "../src/application/user/service/user-service";
+import {OrderService} from "../src/application/order/service/order-service";
+
 require('dotenv').config()
+
 async function main() {
     const userRepo = new UserRepo(pool)
-    const createUser = new CreateUser(userRepo)
+    const userService = new UserService(userRepo)
+
 
     const orderRepo = new OrderRepo(pool)
     const orderProductRepo = new OrderProductRepo(pool)
-    const createOrder = new CreateOrder(orderRepo,orderProductRepo)
+    const orderService = new OrderService(orderRepo, orderProductRepo)
 
-    await startApp(createUser,createOrder)
+
+    const restaurantRepo = new RestaurantRepo(pool)
+    const createRestaurant = new CreateRestaurant(restaurantRepo)
+    const deleteRestaurant = new DeleteRestaurant(restaurantRepo)
+    const updateRestaurant = new UpdateRestaurant(restaurantRepo)
+
+    await startApp({
+        userService,
+        orderService,
+        createRestaurant,
+        updateRestaurant,
+        deleteRestaurant,
+    })
 }
 
 main()

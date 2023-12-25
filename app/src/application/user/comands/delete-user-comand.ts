@@ -8,7 +8,7 @@ export class DeleteUser{
     ){}
 
      async handle(command: DeleteUserCommand): Promise<DeleteUserDTO> {
-        await this.userRepo.findUser(command.id)
+        await this.userRepo.deleteUser(command.id)
         return {
             userId: command.id
         }

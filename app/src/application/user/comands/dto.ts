@@ -6,7 +6,7 @@ export type CreateUserDTO = {
 }
 
 export type DeleteUserDTO = {
-    userId: UUID
+    userId: string
 }
 
 

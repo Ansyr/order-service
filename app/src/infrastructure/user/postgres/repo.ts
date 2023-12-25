@@ -29,7 +29,7 @@ export class UserRepo implements UserRepository {
         }
     }
 
-    async deleteUser(id: UUID) {
+    async deleteUser(id: string) {
         const client = await this.pool.connect()
         try {
             await client.query('BEGIN')

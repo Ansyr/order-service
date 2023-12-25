@@ -1,9 +1,10 @@
-import {CreateUser} from "../../../application/user/comands/create-user-comand";
+
 import {Request, Response} from "express";
-import {CreateUserCommand} from "../../../application/user/comands/comands";
+import {CreateUserCommand, DeleteUserCommand} from "../../../application/user/comands/comands";
+import {UserService} from "../../../application/user/service/user-service";
 export class UserHandler {
     constructor(
-        private createUser5: CreateUser
+        private userService: UserService
     ) {}
     createUser(req: Request, res: Response){
         const command: CreateUserCommand = {
@@ -20,7 +21,15 @@ export class UserHandler {
             phoneNumber: req.body.phoneNumber,
             role: req.body.role
         }
-        this.createUser5.handle(command)
+        this.userService.userCreate.handle(command)
         res.status(201).send()
+    }
+
+   async deleteUser(req: Request, res: Response) {
+        const command: DeleteUserCommand = {
+            id: req.params.id
+        }
+        await this.userService.userDelete.handle(command)
+        res.status(200).send()
     }
 }

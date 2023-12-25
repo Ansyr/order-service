@@ -8,7 +8,6 @@ import {
     updateOrderStatusQuery
 } from "./quries";
 import {UUID} from "crypto";
-import {Product} from "../../../../domain/product/entity/product";
 
 
 export class OrderRepo implements OrderRepository {
@@ -25,10 +24,7 @@ export class OrderRepo implements OrderRepository {
             const orderInsertValues = [order.id.id, order.userId.id, order.dateTime, order.amount.amount, order.status, order.deliveryAddress.getFullAddress(), order.restaurantId.id];
             const orderRes = await client.query(orderInsertTextQueryAndReturnOrderId, orderInsertValues);
             const newOrderId = orderRes.rows[0].order_id;
-            console.log(order.products)
-            const orderDetailValues = order.products.map(product => [newOrderId, product.id.id, product.price.price]).flat();
-            console.log(12312321,orderDetailValues)
-
+            const orderDetailValues = order.products.map(product => [newOrderId, product.id, product.price]).flat();
             await client.query(getOrderDetailTextQuery(order.products.length), orderDetailValues);
 
             await client.query('COMMIT');

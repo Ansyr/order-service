@@ -1,9 +1,9 @@
 import {Restaurant} from "../../domain/restaurant/entity/restaurant";
-import {UUID} from "crypto";
+
 
 export interface RestaurantRepository {
     saveRestaurant(restaurant: Restaurant): void
-    findRestaurant(id: UUID): Restaurant
+    findRestaurant(id: string): Promise<Restaurant | null>
     updateRestaurant(restaurant: Restaurant): void
-    deleteRestaurant(id: UUID): void
+    deleteRestaurant(id: string): void
 }

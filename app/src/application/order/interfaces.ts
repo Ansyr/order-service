@@ -5,9 +5,9 @@ import {Product} from "../../domain/product/entity/product";
 
 export interface OrderRepository {
     saveOrder(order: Order): void
-    deleteOrder(id: UUID): void
+    deleteOrder(id: string): void
     updateOrderStatus(order: Order): void
-    findOrder(id: UUID): Promise<Order | null>
+    findOrder(id: string): Promise<Order | null>
 }
 
 

@@ -35,5 +35,5 @@ export type changeUserInfoCommand = {
 
 
 export type DeleteUserCommand = {
-    id: UUID
+    id: string
 }

@@ -2,7 +2,7 @@ import {UUID} from "crypto";
 import {User} from "../../domain/user/entity/user";
 
 export interface UserRepository {
-    deleteUser(id: UUID): void
+    deleteUser(id: string): void
 
     findUser(id: UUID): Promise<User | null>
 

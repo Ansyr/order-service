@@ -18,17 +18,13 @@ export type CreateOrderCommand = {
 
 
 export type DeleteOrderCommand = {
-    OrderId: UUID
+    orderId: string
 }
 
 
 export type UpdateOrderStatusCommand = {
-    orderId: UUID;
+    orderId: string;
     status: OrderStatus;
 }
 
 
-export type AssignOrderToUserCommand = {
-    orderId: UUID;
-    userId: UUID;
-}

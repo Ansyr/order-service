@@ -2,7 +2,7 @@ import {UUID} from "crypto";
 
 
 export type DeleteOrderDTO = {
-    orderId: UUID
+    orderId: string
 }
 
 export type CreatedOrderDTO = {
@@ -10,5 +10,5 @@ export type CreatedOrderDTO = {
 }
 
 export type UpdateOrderStatusDTO = {
-    orderId: UUID,
+    orderId: string,
 }

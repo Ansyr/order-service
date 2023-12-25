@@ -23,7 +23,6 @@ export class CreateOrder {
         const address = new Address(command.country, command.city, command.street, command.houseNumber, command.apartmentNumber);
 
         const products = await this.orderProductRepo.getProducts(command.products.map((id: any) => id.productId))
-        console.log(products)
 
         const orderStatus = OrderStatus.Created
         const createdTime = new Date()

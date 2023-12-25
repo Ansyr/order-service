@@ -9,9 +9,9 @@ export class DeleteOrder{
     ) {}
 
      async handle(command: DeleteOrderCommand): Promise<DeleteOrderDTO> {
-        await this.orderRepo.deleteOrder(command.OrderId)
+        this.orderRepo.deleteOrder(command.orderId)
         return {
-            orderId: command.OrderId
+            orderId: command.orderId
         }
     }
 }

@@ -13,7 +13,7 @@ export type CreateRestaurantCommand = {
 }
 
 export type UpdateRestaurantCommand = {
-    restaurantId: UUID
+    restaurantId: string
     name: string
     description: string
     city: string
@@ -26,5 +26,5 @@ export type UpdateRestaurantCommand = {
 
 
 export type DeleteRestaurantCommand = {
-    restaurantId: UUID
+    restaurantId: string
 }
